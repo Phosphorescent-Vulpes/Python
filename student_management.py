@@ -5,7 +5,7 @@ def adding_students(students):
         students (list): The list of students.
 
     Returns:
-        updated list of students.
+        list: updated list of students.
     """
     adding = True
     #Checks students name is using letters.
@@ -14,7 +14,7 @@ def adding_students(students):
         if student.isalpha():
             adding = False
             run = True
-            #Checks age is viable.
+            #Checks age is viable.
             while run:
                 try:
                     age = int(input("Age:"))
@@ -22,18 +22,18 @@ def adding_students(students):
                         print("\nInvalid age, please enter correctly\n")
                     else:
                         run = False
-                        cool = True
-                        #Checks the students colour is using letters.
-                        while cool:
-                            colour = input("Favourite colour:").strip().title()
-                            if colour.isalpha():
-                                students.append([student, age, colour])
-                                print()
-                                cool = False
-                            else:
-                                print("\nPlease enter A-Z")
                 except ValueError:
                     print("Please enter a number")
+            cool = True
+            #Checks the students colour is using letters.
+            while cool:
+                colour = input("Favourite colour:").strip().title()
+                if colour.isalpha():
+                    students.append([student, age, colour])
+                    print()
+                    cool = False
+                else:
+                    print("\nPlease enter A-Z")
         elif student in students:
             print("This student is already in the system," 
                   "please differentiate students with the same name")
@@ -66,7 +66,8 @@ def remove_students(students):
     Args:
         students (list): the list of students.
 
-    Returns: the updated list of students.
+    Returns:
+        list: the updated list of students.
     """
     #Checks there are students to remove.
     if len(students) > 0:
@@ -76,7 +77,7 @@ def remove_students(students):
             if name.isalpha():
                 remove = False
                 play = True
-                #Checks for value errors
+                #Checks for value errors.
                 while play:
                     try:
                         number = int(input("Student's age:"))
@@ -88,21 +89,21 @@ def remove_students(students):
                         play = True
                     else:
                         minus = True
-                        #Checks the student colour is using letters and whether it is int the list
-                        while minus:
-                            light = input("Student's favourite colour:").strip().title()
-                            if light.isalpha():
-                                if [name, number, light] in students:
-                                    students.remove([name, number, light])
-                                    minus = False
-                                    print()
-                                else:
-                                    print("\nThere no student with this profile: {}, {}, {}\n".format(name, number, light))
-                                    print_students(students)
-                                    remove = True
-                                    minus = False
-                            else:
-                                print("\nPlease enter A-Z")
+                #Checks the student colour is using letters and whether it is int the list.
+                while minus:
+                    light = input("Student's favourite colour:").strip().title()
+                    if light.isalpha():
+                       if [name, number, light] in students:
+                            students.remove([name, number, light])
+                            minus = False
+                            print()
+                       else:
+                            print("\nThere no student with this profile: {}, {}, {}\n".format(name, number, light))
+                            print_students(students)
+                            remove = True
+                            minus = False
+                    else:
+                        print("\nPlease enter A-Z")
             else:
                 print("\nPlease enter A-Z")
     else:
@@ -113,12 +114,12 @@ def remove_students(students):
 def main():
     """gives the main menu for option.
 
-    Returns: returns of functions to main code.
+    Returns:
     """
     students = []
     while True:
         ask = True
-        #Brings up menus
+        #Brings up menu.
         while ask:
             try:
                 option = int(input("1) Add a new student\n"
@@ -129,7 +130,7 @@ def main():
                 ask = False
             except ValueError:
                 print("\nPlease enter a number\n")
-        #Links functions to the option choosen
+        #Links functions to the option choosen.
         if option == 1:
             students = adding_students(students)
         elif option == 2:
