@@ -1,0 +1,142 @@
+def main():
+    pizzas = []
+    cost_pizza = 0
+    count_pizza = 0
+    while True:
+        main = True
+        while main:
+            customer_name = input("Hello, whats your name?")
+            if len(customer_name) > 20:
+                print("Exceeds length limit,")
+            elif len(customer_name) < 2:
+                print("Your name is to small")
+            else:
+                initial = True
+                while initial:
+                    count_pizza = int(input("How many pizza's would you like?"))
+                    menu = True
+                    while menu:
+                        option = int(input("Would you like to:\n"
+                                           "1) Add a pizza\n"
+                                           "2) Remove a pizza\n"
+                                           "3) Clear order\n"
+                                           "4) Print order\n"
+                                           "5) Sort order alphabetically\n"
+                                           "6) Finalise\n"))
+                        if option == 1:
+                            adding = True
+                            while adding:
+                                if count_pizza >= 10:
+                                    print("You cannot add anymore pizza's to the order")
+                                    adding = False
+                                else:
+                                    order = input("Choose kind:\n"
+                                                  "Margherita - Cheese and tomatoes, topped with basil.\n"
+                                                  "Pepperoni - Pepperoni and cheese toppings.\n"
+                                                  "Meat lovers - Pepperoni, ham, chicken, topped with cheese.\n"
+                                                  "Vegetarian - Spinach, mushrooms, basil and chess toppings.\n"
+                                                  "BBQ - BBQ sauce, pork, beef and cheese on top.\n"
+                                                  "Supreme - Ground beef, bacon,capsicum, italian sausage and cheese.\n"
+                                                  "Your Choice:").title()
+                                    size = input(
+                                        "What size would you like: Small ($5), Medium ($10) or Large($15)").title()
+                                    if size == "Small":
+                                        cost_pizza += 5
+                                    elif size == "Medium":
+                                        cost_pizza += 10
+                                    elif size == "Large":
+                                        cost_pizza += 15
+                                    else:
+                                        print("Please enter Small, Medium or Large")
+
+                                    pizza_note = int(input("1)Gluten free"
+                                                           "2)Regular"
+                                                           "Choice:"))
+                                    if pizza_note == 1:
+                                        pizza_note = "Gluten Free"
+                                    elif pizza_note == 2:
+                                        pizza_note = "Regular"
+                                    else:
+                                        print("please enter 1 or 2")
+                                    pizzas.append([size, order, pizza_note])
+                                    count_pizza += 1
+                        elif option == 2:
+                            if count_pizza <= 0:
+                                print("You have no pizzas to remove")
+                            else:
+                                remove_order = input("Choose kind to remove:\n"
+                                                     "Margherita - Cheese and tomatoes, topped with basil.\n"
+                                                     "Pepperoni - Pepperoni and cheese toppings.\n"
+                                                     "Meat lovers - Pepperoni, ham, chicken, topped with cheese.\n"
+                                                     "Vegetarian - Spinish, mushrooms, basil and chess toppings.\n"
+                                                     "BBQ - BBQ sauce, pork, beef and cheese on top.\n"
+                                                     "Supreme - Ground beef, bacon,capsicum, italian sausage and cheese.\n"
+                                                     "Your Choice:").title()
+                                remove_size = input("What was it's size? (Small, Medium or Large)").title()
+                                if remove_size == "Small":
+                                    cost_pizza -= 5
+                                elif remove_size == "Medium":
+                                    cost_pizza -= 10
+                                elif remove_size == "Large":
+                                    cost_pizza -= 15
+                                else:
+                                    print("Please enter Small, Medium or Large")
+
+                                remove_note = int(input("Was your pizza:"
+                                                        "1)Gluten free"
+                                                        "2)Regular"
+                                                        "Choice:"))
+                                if remove_note == 1:
+                                    remove_note = "Gluten Free"
+                                elif remove_note == 2:
+                                    remove_note = "Regular"
+                                else:
+                                    print("please enter 1 or 2")
+                                pizzas.remove([remove_size, remove_order, remove_note])
+                        elif option == 3:
+                            asking = True
+                            while asking:
+                                ask_clear = int(input("Are you sure you want to clear your order?"
+                                                      "1) Yes"
+                                                      "2) No"))
+                                if ask_clear == 1:
+                                    pizzas.clear()
+                                    count_pizza = 0
+                                    cost_pizza = 0
+                                    asking = False
+                                elif ask_clear == 2:
+                                    asking = False
+                                else:
+                                    print("Please enter 1 or 2")
+                        elif option == 4:
+                            print("\n_--_--Order--_--_")
+                            for pizza in pizzas:
+                                size = pizza[0]
+                                order = pizza[1]
+                                note = pizza[2]
+                                print("- {} {} x {}\n".format(size, order, note))
+                        elif option == 5:
+                            pass
+                        elif option == 6:        
+                            print("\n_--_-- {}'s order--_--_").format(customer_name)
+                            for pizza in pizzas:
+                                size = pizza[0]
+                                order = pizza[1]
+                                note = pizza[2]
+                                print("- {} {} x {}\n".format(size, order, note))
+                                print("Total cost = {}").format(cost_pizza)
+                                final = int(input("Would you like to complete your order:"
+                                                  "1) Yes"
+                                                  "2) No"))
+                                if final == 1:
+                                    pizzas.clear()
+                                    count_pizza = 0
+                                    cost_pizza = 0
+                                    main = False
+                                    initial = False
+                                else:
+                                    pass
+
+                        else:
+                            print("Please enter a number from 1-5")
+
