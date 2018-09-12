@@ -1,7 +1,6 @@
 def main():
     pizzas = []
     cost_pizza = 0
-    count_pizza = 0
     while True:
         main = True
         while main:
@@ -14,15 +13,20 @@ def main():
                 initial = True
                 while initial:
                     count_pizza = int(input("How many pizza's would you like?"))
-                    menu = True
+                    if count_pizza > 10 or count_pizza < 10:
+                        print("Please enter amount from 1-10")
+                    else:
+                        menu = True
                     while menu:
                         option = int(input("Would you like to:\n"
                                            "1) Add a pizza\n"
                                            "2) Remove a pizza\n"
                                            "3) Clear order\n"
                                            "4) Print order\n"
-                                           "5) Sort order alphabetically\n"
-                                           "6) Finalise\n"))
+                                           "5) Sort alphabetically\n"
+                                           "6) Finalise\n"
+                                           "7) Exit\n"
+                                           "Your Choice:"))
                         if option == 1:
                             adding = True
                             while adding:
@@ -48,7 +52,6 @@ def main():
                                         cost_pizza += 15
                                     else:
                                         print("Please enter Small, Medium or Large")
-
                                     pizza_note = int(input("1)Gluten free"
                                                            "2)Regular"
                                                            "Choice:"))
@@ -81,7 +84,6 @@ def main():
                                     cost_pizza -= 15
                                 else:
                                     print("Please enter Small, Medium or Large")
-
                                 remove_note = int(input("Was your pizza:"
                                                         "1)Gluten free"
                                                         "2)Regular"
@@ -117,14 +119,14 @@ def main():
                                 print("- {} {} x {}\n".format(size, order, note))
                         elif option == 5:
                             pass
-                        elif option == 6:        
-                            print("\n_--_-- {}'s order--_--_").format(customer_name)
+                        elif option == 6:
+                            print("\n_--_-- {}'s order--_--_".format(customer_name))
                             for pizza in pizzas:
                                 size = pizza[0]
                                 order = pizza[1]
                                 note = pizza[2]
                                 print("- {} {} x {}\n".format(size, order, note))
-                                print("Total cost = {}").format(cost_pizza)
+                                print("Total cost = {}".format(cost_pizza))
                                 final = int(input("Would you like to complete your order:"
                                                   "1) Yes"
                                                   "2) No"))
@@ -136,7 +138,10 @@ def main():
                                     initial = False
                                 else:
                                     pass
-
+                        elif order == 7:
+                            exit()
                         else:
                             print("Please enter a number from 1-5")
 
+
+        main()
